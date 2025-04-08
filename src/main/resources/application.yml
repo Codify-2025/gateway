@@ -7,10 +7,6 @@ spring:
     name: gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
       routes:
         - id: gateway-test
           uri: lb://gateway-test  # Eureka에 등록된 서비스 이름
@@ -21,5 +17,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+      
   instance:
     prefer-ip-address: true
