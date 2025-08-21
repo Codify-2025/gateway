@@ -19,11 +19,17 @@ spring:
           predicates:
             - Path=/api/similarity/**
 
+        - id: parsing
+          uri: lb://parsing
+          predicates:
+            - Path=/api/parse/**
+            
         # submit 서비스 라우트
         - id: submit
           uri: lb://submit
           predicates:
             - Path=/api/submit/**
+
 
 eureka:
   client:
