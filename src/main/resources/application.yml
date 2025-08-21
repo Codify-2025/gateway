@@ -13,11 +13,17 @@ spring:
           predicates:
             - Path=/test/**        # 원하는 경로로 매핑
 
-        # similarity 라우트 추가
+        # similarity 서비스 라우트
         - id: similarity
           uri: lb://similarity
           predicates:
             - Path=/api/similarity/**
+
+        # submit 서비스 라우트
+        - id: submit
+          uri: lb://submit
+          predicates:
+            - Path=/api/submit/**
 
 eureka:
   client:
