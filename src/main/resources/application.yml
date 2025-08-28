@@ -30,6 +30,11 @@ spring:
           predicates:
             - Path=/api/submit/**
 
+        - id: dashboard
+          uri: lb://dashboard
+          predicates:
+            - Path=/api/dashboard/**
+
 
 eureka:
   client:
