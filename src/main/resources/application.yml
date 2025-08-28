@@ -30,17 +30,12 @@ spring:
           predicates:
             - Path=/api/submit/**
             - Header=X-Color, blue
-          filters:
-            - StripPrefix=2
 
         - id: submit-green
           uri: lb://submit-green
           predicates:
             - Path=/api/submit/**
             - Header=X-Color, green
-          filters:
-            - StripPrefix=2
-
 
 eureka:
   client:
