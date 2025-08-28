@@ -52,3 +52,13 @@ eureka:
 
   instance:
     prefer-ip-address: true
+
+# 배포 확인을 위한 Actuator 추가
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway,httpexchanges,metrics
+  endpoint:
+    gateway:
+      enabled: true
