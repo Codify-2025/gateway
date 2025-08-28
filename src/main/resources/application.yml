@@ -25,16 +25,24 @@ spring:
             - Path=/api/parse/**
             
         # submit 서비스 라우트
-        - id: submit
-          uri: lb://submit
+        - id: submit-blue
+          uri: lb://submit-blue
           predicates:
             - Path=/api/submit/**
+            - Header=X-Color, blue
+
+        - id: submit-green
+          uri: lb://submit-green
+          predicates:
+            - Path=/api/submit/**
+            - Header=X-Color, green
 
 
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+      defaultZone: ${EUREKA_SERVER_URL:http://eureka:8761/eureka}
+      # defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
     fetch-registry: true
     register-with-eureka: true
 
