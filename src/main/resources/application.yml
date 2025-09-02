@@ -1,6 +1,6 @@
 
 server:
-  port: ${PORT:8080}
+  port: ${PORT}
 
 spring:
   application:
@@ -51,4 +51,6 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+  server:
+    port: ${MANAGEMENT_PORT}
 
