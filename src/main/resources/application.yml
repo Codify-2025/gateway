@@ -32,21 +32,25 @@ spring:
           predicates:
             - Path=/api/dashboard/**
 
-
-
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,prometheus
+        include: health,info,prometheus,beans,httptrace,metrics
         exclude: env,configprops,heapdump
   endpoint:
     health:
       probes:
         enabled: true
       show-details: always
+    prometheus:
+      enabled: true
   health:
     livenessstate:
       enabled: true
     readinessstate:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
