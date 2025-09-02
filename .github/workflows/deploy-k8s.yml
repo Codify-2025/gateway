@@ -44,8 +44,8 @@ jobs:
         run: |
           IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)
           echo "Building and pushing image: ${{ env.IMAGE_NAME }}:$IMAGE_TAG"
-          docker build -t ${{ secrets.DEPLOY_USERNAME }}/gateway:${{ env.TAG }} .
-          docker push ${{ secrets.DEPLOY_USERNAME }}/gateway:${{ env.TAG }}
+          docker build -t ${{ secrets.DEPLOY_USERNAME }}/codify-gateway:${{ env.TAG }} .
+          docker push ${{ secrets.DEPLOY_USERNAME }}/codify-gateway:${{ env.TAG }}
           echo "image_tag=${{ env.TAG }}" >> $GITHUB_OUTPUT
   # ============================================
   # CD 트리거 Job (매니페스트 업데이트)
@@ -66,7 +66,7 @@ jobs:
       - name: 2. Deployment.yaml 파일의 이미지 태그 업데이트
         working-directory: ./deploy/gateway
         run: |
-          sed -i "s|image: ${{ secrets.DEPLOY_USERNAME }}/gateway:.*|image: ${{ secrets.DEPLOY_USERNAME }}/gateway:${{ needs.build-and-push.outputs.image_tag }}|" deployment.yaml
+          sed -i "s|image: ${{ secrets.DEPLOY_USERNAME }}/codify-gateway:.*|image: ${{ secrets.DEPLOY_USERNAME }}/codify-gateway:${{ needs.build-and-push.outputs.image_tag }}|" deployment.yaml
       - name: 3. 변경된 매니페스트 커밋 및 푸시
         run: |
           git config --global user.name 'dylee00'
