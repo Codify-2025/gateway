@@ -9,6 +9,28 @@ spring:
     discovery:
       enabled: false
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]' :
+            allowed-origins:
+              - "http://localhost:5173"
+              - "https://codify-frontend-blush.vercel.app"
+            allow-credentials: true
+            allowed-headers:
+              - x-requested-with
+              - authorization
+              - content-type
+              - credential
+              - X-AUTH-TOKEN
+              - X-CSRF-TOKEN
+              - USER-UUID
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
       routes:
         # similarity 서비스 라우트
         - id: similarity
