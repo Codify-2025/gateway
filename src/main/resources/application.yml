@@ -11,7 +11,7 @@ spring:
     gateway:
       globalcors:
         cors-configurations:
-          '[/**]' :
+          '[/**]':
             allowed-origins:
               - "http://localhost:5173"
               - "https://codify-frontend-blush.vercel.app"
@@ -37,22 +37,32 @@ spring:
           uri: http://codify-similarity.codify.svc.cluster.local
           predicates:
             - Path=/api/similarity/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
 
         - id: parsing
           uri: http://codify-parsing.codify.svc.cluster.local
           predicates:
             - Path=/api/parse/**
-            
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
+
         # submit 서비스 라우트
         - id: submit
           uri: http://codify-submit.codify.svc.cluster.local
           predicates:
             - Path=/api/submit/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
 
         - id: dashboard
           uri: http://codify-dashboard.codify.svc.cluster.local
           predicates:
             - Path=/api/dashboard/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
+
+        - id: upload
+          uri: http://codify-upload.codify.svc.cluster.local
+          predicates:
+            - Path=/api/upload/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
 
 management:
   endpoints:
@@ -75,4 +85,9 @@ management:
       application: ${spring.application.name}
   server:
     port: ${MANAGEMENT_PORT}
+
+logging:
+  level:
+    org.springframework.web.cors: DEBUG
+    org.springframework.cloud.gateway: DEBUG
 
