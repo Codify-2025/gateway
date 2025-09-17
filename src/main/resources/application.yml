@@ -41,6 +41,12 @@ spring:
           predicates:
             - Path=/api/upload/**
 
+        # result 서비스 라우트
+        - id: result
+          uri: lb://result
+          predicates:
+            - Path=/api/result/**
+
 
 eureka:
   client:
