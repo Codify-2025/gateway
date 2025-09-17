@@ -64,6 +64,12 @@ spring:
             - Path=/api/upload/**
             - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
 
+        - id: result
+          uri: http://codify-result.codify.svc.cluster.local
+          predicates:
+            - Path=/api/result/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
+
 management:
   endpoints:
     web:
