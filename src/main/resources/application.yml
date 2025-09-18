@@ -70,6 +70,18 @@ spring:
             - Path=/api/result/**
             - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
 
+        - id: parsing
+          uri: http://codify-parsing.codify.svc.cluster.local
+          predicates:
+            - Path=/api/parsing/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
+
+        - id: similarity
+          uri: http://codify-similarity.codify.svc.cluster.local
+          predicates:
+            - Path=/api/similarity/**
+            - Method=GET,POST,PUT,DELETE,PATCH,OPTIONS
+
 management:
   endpoints:
     web:
